@@ -1,10 +1,12 @@
 import React from "react";
 import { Filters } from "./Filters";
+import { List } from "./List";
 
-export const App = () => {
+export function App() {
   return (
     <>
       <Filters></Filters>
+      <List></List>
     </>
   );
-};
+}

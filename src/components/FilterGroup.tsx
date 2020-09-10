@@ -3,8 +3,8 @@ import uniquid from "uniquid";
 import { TypeFilterGroup } from "../types";
 import { Filter } from "./Filter";
 
-type TypeProps = { data: TypeFilterGroup };
-export const FilterGroup = ({ data }: TypeProps) => {
+type Props = { data: TypeFilterGroup };
+export function FilterGroup({ data }: Props) {
   // console.log(data);
   return (
     <>
@@ -14,4 +14,4 @@ export const FilterGroup = ({ data }: TypeProps) => {
       ))}
     </>
   );
-};
+}

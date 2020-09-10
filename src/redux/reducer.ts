@@ -1,5 +1,5 @@
 import { RootState } from "../types";
-import { RESIZE, DATA } from "../constants";
+import { RESIZE, DATA, SELECT_CHECKBOX } from "../constants";
 
 export const rootReducer = (
   state: RootState,
@@ -13,12 +13,23 @@ export const rootReducer = (
       height,
     };
   } else if (action.type === DATA) {
-    const { filters, filterGroups } = action.payload;
+    const { filterState, filterGroups, items, numberOfPrograms } = action.payload;
     // console.log(filterState);
     return {
       ...state,
-      filters,
+      items,
+      filterState,
       filterGroups,
+      numberOfPrograms,
+    };
+  } else if (action.type === SELECT_CHECKBOX) {
+    const { filterState, numberOfPrograms, filteredItems } = action.payload;
+    // console.log(filterState);
+    return {
+      ...state,
+      filterState,
+      numberOfPrograms,
+      filteredItems,
     };
   }
   return state;

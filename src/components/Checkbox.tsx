@@ -1,13 +1,18 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCheckbox } from "../redux/actions/selectCheckbox";
+import { TypeFilter, RootState } from "../types";
 
-export const Checkbox = ({ data, facetProperty }) => {
+type Props = { data: TypeFilter; facetProperty: string };
+export function Checkbox({ data, facetProperty }: Props) {
   const dispatch = useDispatch();
+  const checked = useSelector((state: RootState) => state.filterState[facetProperty][data.id]);
   return (
-    <div>
+    <span>
+      {/* <label>{`${data.name} (${data.id})`}</label> */}
       <label>{data.name}</label>
       <input
+        checked={checked}
         onChange={e => {
           dispatch(
             selectCheckbox({
@@ -19,6 +24,6 @@ export const Checkbox = ({ data, facetProperty }) => {
         }}
         type="checkbox"
       ></input>
-    </div>
+    </span>
   );
-};
+}

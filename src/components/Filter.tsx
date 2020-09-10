@@ -1,15 +1,15 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../types";
+import uniquid from "uniquid";
+import { TypeFilter } from "../types";
 import { Checkbox } from "./Checkbox";
 import { Value } from "./Value";
 
-export const Filter = ({ data, facetProperty }) => {
-  // console.log(data, facetProperty);
+type Props = { data: TypeFilter; facetProperty: string };
+export function Filter({ data, facetProperty }: Props) {
   return (
-    <>
-      <Checkbox data={data} facetProperty={facetProperty}></Checkbox>
-      <Value></Value>
-    </>
+    <div>
+      <Checkbox key={uniquid()} data={data} facetProperty={facetProperty}></Checkbox>
+      <Value key={uniquid()} data={data} facetProperty={facetProperty}></Value>
+    </div>
   );
-};
+}
