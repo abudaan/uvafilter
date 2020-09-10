@@ -1,7 +1,7 @@
 export type JSONData = {
   title: string;
   subtitle: string;
-  filters: Filter[];
+  filters: TypeFilterGroup[];
   contentType: string;
   items: [
     {
@@ -20,21 +20,17 @@ export type JSONData = {
   };
 };
 
-export type Filter = {
-  title: string;
-  facetProperty: string;
-  filterOptions: { [id: string]: string }[];
-};
+export type TypeFilter = { [id: string]: string };
 
-export type FilterState = {
+export type TypeFilterGroup = {
   title: string;
   facetProperty: string;
-  filterOptions: { id: string; name: string; checked: boolean }[];
+  filterOptions: TypeFilter[];
 };
 
 export type RootState = {
   width: number;
   height: number;
-  json: JSONData;
-  filterState: FilterState;
+  filters: { [id: string]: boolean }[];
+  filterGroups: TypeFilterGroup[];
 };

@@ -1,16 +1,15 @@
 import { DATA } from "../../constants";
-import { JSONData, Filter, FilterState } from "../../types";
+import { JSONData, TypeFilterGroup } from "../../types";
 
 export const parseData = (data: JSONData) => {
   const { filters } = data;
 
-  const filterState: FilterState[] = filters.map((f: Filter) => {
+  const filterGroups: TypeFilterGroup[] = filters.map((f: TypeFilterGroup) => {
     const options = f.filterOptions.map(d => {
       const [id, name] = Object.entries(d)[0];
       return {
         id,
         name,
-        checked: false,
       };
     });
     return {
@@ -19,12 +18,13 @@ export const parseData = (data: JSONData) => {
     };
   });
 
-  // console.log(filterState);
   return {
     type: DATA,
     payload: {
-      data,
-      filterState,
+      filterState: filterGroups.map(f =>
+        f.filterOptions.reduce((acc, val) => ({ ...acc, [val.id]: false }), {})
+      ),
+      filterGroups,
     },
   };
 };

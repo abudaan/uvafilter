@@ -13,11 +13,12 @@ export const rootReducer = (
       height,
     };
   } else if (action.type === DATA) {
-    const { json, filterState } = action.payload;
+    const { filters, filterGroups } = action.payload;
+    // console.log(filterState);
     return {
       ...state,
-      json,
-      filterState,
+      filters,
+      filterGroups,
     };
   }
   return state;

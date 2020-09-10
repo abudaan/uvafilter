@@ -6,10 +6,11 @@ import { store } from "./redux/store";
 import { RESIZE, DATA } from "./constants";
 import { JSONData } from "./types";
 import { parseData } from "./redux/actions/parseData";
+import { App } from "./components/App";
 
 render(
   <Provider store={store}>
-    <div className="top">YOLO!</div>
+    <App></App>
   </Provider>,
   document.getElementById("app"),
   () => {

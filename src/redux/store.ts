@@ -7,18 +7,8 @@ import { RootState } from "../types";
 const initialState: RootState = {
   width: 0,
   height: 0,
-  json: {
-    title: "",
-    subtitle: "",
-    filters: [null],
-    contentType: "",
-    items: [null],
-    selectionCriteria: [null],
-    searchBox: false,
-    calendarEnabled: false,
-    lexicon: {},
-  },
-  filterState: null,
+  filters: null,
+  filterGroups: null,
 };
 
 // const store: Store<any, AnyAction> = createStore(
