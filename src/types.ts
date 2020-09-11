@@ -52,6 +52,12 @@ export type TypeFilterState = {
   };
 };
 
+export type TypeItemsPerFilter = {
+  [id: string]: {
+    [id: string]: TypeItem[];
+  };
+};
+
 export type RootState = {
   width: number;
   height: number;
@@ -60,4 +66,5 @@ export type RootState = {
   items: TypeItem[];
   numberOfPrograms: TypeNumberOfPrograms;
   filteredItems: TypeItem[];
+  itemsPerFilter: TypeItemsPerFilter;
 };

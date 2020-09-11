@@ -1,6 +1,7 @@
 import { DATA } from "../../constants";
 import { JSONData, TypeFilterGroup } from "../../types";
 import { runFilters } from "./runFilters";
+import { getItemsPerFilter } from "./getItemsPerFilter";
 
 export const parseData = (data: JSONData) => {
   const { filters, items } = data;
@@ -27,7 +28,13 @@ export const parseData = (data: JSONData) => {
     };
   }, {});
 
-  const [filteredItems, numberOfPrograms] = runFilters({ items, filterGroups, filterState });
+  const itemsPerFilter = getItemsPerFilter(filterState, items);
+
+  const [filteredItems, numberOfPrograms] = runFilters({
+    items,
+    itemsPerFilter,
+    filterState,
+  });
 
   return {
     type: DATA,
@@ -37,6 +44,7 @@ export const parseData = (data: JSONData) => {
       items,
       filteredItems,
       numberOfPrograms,
+      itemsPerFilter,
     },
   };
 };

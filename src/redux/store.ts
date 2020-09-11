@@ -12,6 +12,7 @@ const initialState: RootState = {
   filterGroups: null,
   numberOfPrograms: null,
   filteredItems: null,
+  itemsPerFilter: null,
 };
 
 // const store: Store<any, AnyAction> = createStore(

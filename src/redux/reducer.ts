@@ -13,7 +13,14 @@ export const rootReducer = (
       height,
     };
   } else if (action.type === DATA) {
-    const { items, filteredItems, filterState, filterGroups, numberOfPrograms } = action.payload;
+    const {
+      items,
+      filteredItems,
+      filterState,
+      filterGroups,
+      numberOfPrograms,
+      itemsPerFilter,
+    } = action.payload;
     return {
       ...state,
       items,
@@ -21,6 +28,7 @@ export const rootReducer = (
       filterState,
       filterGroups,
       numberOfPrograms,
+      itemsPerFilter,
     };
   } else if (action.type === SELECT_CHECKBOX) {
     const { filterState, numberOfPrograms, filteredItems } = action.payload;
