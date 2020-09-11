@@ -5,8 +5,8 @@ import { List } from "./List";
 export function App() {
   return (
     <>
-      <List></List>
       <Filters></Filters>
+      <List></List>
     </>
   );
 }

@@ -1,0 +1,47 @@
+body {
+  overflow-x: hidden;
+}
+
+div,
+* {
+  box-sizing: border-box;
+}
+
+.filters {
+  width: 100vw;
+  // height: 250px;
+  display: flex;
+  flex-direction: row;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px dotted #111;
+  // position: fixed;
+}
+
+.filter-group {
+  font-size: 0.85rem;
+  width: 18vw;
+
+  h4 {
+    // font-size: 1rem;
+    margin: 0;
+    margin-bottom: 0.4rem;
+  }
+}
+
+.list {
+  padding-left: 1rem;
+}
+
+.item-container {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  align-content: space-between;
+  .item {
+    max-width: 300px;
+    background-color: #ededed;
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+}
