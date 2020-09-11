@@ -17,7 +17,6 @@ export const runFilters = ({ items, filterState }: Args): [TypeItem[], TypeNumbe
     return acc;
   }, []);
 
-  // const filteredItems = {};
   filterArray.forEach(f => {
     const [filter1, filters2] = f;
     if (filters2.length > 0) {
@@ -40,12 +39,10 @@ export const runFilters = ({ items, filterState }: Args): [TypeItem[], TypeNumbe
                   }
                 }
                 if (f >= 1) {
-                  // filteredItems[item.id] = item;
                   return true;
                 }
                 return false;
               }
-              // filteredItems[item.id] = item;
               return true;
             });
           });
@@ -76,12 +73,7 @@ export const runFilters = ({ items, filterState }: Args): [TypeItem[], TypeNumbe
   filterArray.forEach(f => {
     const [, filters2] = f;
     if (filters2.length !== 0) {
-      const r = filterItems(filtered, f);
-      filtered = r;
-      // console.log(r.length);
-      // if (r.length !== 0) {
-      //   filtered = r;
-      // }
+      filtered = filterItems(filtered, f);
     }
   });
   filtered.forEach(item => {
