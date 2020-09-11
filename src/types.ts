@@ -40,21 +40,24 @@ export type TypeFilterGroup = {
   filterOptions: TypeFilter[];
 };
 
+export type TypeNumberOfPrograms = {
+  [id: string]: {
+    [id: string]: number;
+  };
+};
+
+export type TypeFilterState = {
+  [id: string]: {
+    [id: string]: boolean;
+  };
+};
+
 export type RootState = {
   width: number;
   height: number;
-  checkKeys: string[];
-  filterState: {
-    [id: string]: {
-      [id: string]: boolean;
-    };
-  };
+  filterState: TypeFilterState;
   filterGroups: TypeFilterGroup[];
   items: TypeItem[];
-  numberOfPrograms: {
-    [id: string]: {
-      [id: string]: number;
-    };
-  };
+  numberOfPrograms: TypeNumberOfPrograms;
   filteredItems: TypeItem[];
 };

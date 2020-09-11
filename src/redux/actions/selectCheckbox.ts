@@ -1,14 +1,10 @@
 import { SELECT_CHECKBOX } from "../../constants";
 import { RootState } from "../../types";
 import { store } from "../store";
+import { getNumberOfPrograms } from "./getNumberOfPrograms";
 
 export const selectCheckbox = ({ facetProperty, id, selected }) => {
-  const {
-    items,
-    checkKeys,
-    filterGroups,
-    filterState: oldFilterState,
-  } = store.getState() as RootState;
+  const { items, filterGroups, filterState: oldFilterState } = store.getState() as RootState;
 
   const filterState = { ...oldFilterState };
   filterState[facetProperty][id] = selected;
@@ -34,27 +30,7 @@ export const selectCheckbox = ({ facetProperty, id, selected }) => {
     return pass;
   });
 
-  const numberOfPrograms = filterGroups.reduce((acc, val) => {
-    const options = val.filterOptions.reduce((acc1, val1) => {
-      return { ...acc1, [val1.id]: 0 };
-    }, {});
-    return {
-      ...acc,
-      [val.facetProperty]: options,
-    };
-  }, {});
-
-  filteredItems.forEach(val => {
-    checkKeys.forEach(key => {
-      if (val[key]) {
-        val[key].forEach((s: string) => {
-          if (numberOfPrograms[key] && numberOfPrograms[key][s] >= 0) {
-            numberOfPrograms[key][s] = numberOfPrograms[key][s] + 1;
-          }
-        });
-      }
-    });
-  });
+  const numberOfPrograms = getNumberOfPrograms(filterGroups, filteredItems);
 
   return {
     type: SELECT_CHECKBOX,
