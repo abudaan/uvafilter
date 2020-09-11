@@ -69,15 +69,11 @@ export const runFilters = ({ items, filterState }: Args): [TypeItem[], TypeNumbe
   };
 
   let filtered = [...items];
-  const filteredItems = {};
   filterArray.forEach(f => {
     const [, filters2] = f;
     if (filters2.length !== 0) {
       filtered = filterItems(filtered, f);
     }
-  });
-  filtered.forEach(item => {
-    filteredItems[item.id] = item;
   });
 
   const numberOfPrograms = {};
@@ -88,5 +84,5 @@ export const runFilters = ({ items, filterState }: Args): [TypeItem[], TypeNumbe
     });
   });
 
-  return [Object.values(filteredItems), numberOfPrograms];
+  return [filtered, numberOfPrograms];
 };
