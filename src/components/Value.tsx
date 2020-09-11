@@ -4,17 +4,17 @@ import { RootState, TypeFilter } from "../types";
 
 type Props = { data: TypeFilter; facetProperty: string };
 export function Value({ data, facetProperty }: Props) {
-  const amount = useSelector((state: RootState) => {
+  const amount = useSelector((state: RootState): string => {
     if (state.numberOfPrograms === null) {
-      return 0;
+      return "";
     }
     if (
       typeof state.numberOfPrograms[facetProperty] === "undefined" ||
       typeof state.numberOfPrograms[facetProperty][data.id] === "undefined"
     ) {
-      return 0;
+      return "";
     }
-    return state.numberOfPrograms[facetProperty][data.id];
+    return `(${state.numberOfPrograms[facetProperty][data.id]})`;
   });
-  return <span>{`(${amount})`}</span>;
+  return <span>{amount}</span>;
 }

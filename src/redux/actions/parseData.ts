@@ -1,6 +1,5 @@
 import { DATA } from "../../constants";
-import { JSONData, TypeFilterGroup, RootState } from "../../types";
-import { store } from "../store";
+import { JSONData, TypeFilterGroup } from "../../types";
 import { getNumberOfPrograms } from "./getNumberOfPrograms";
 
 export const parseData = (data: JSONData) => {
@@ -28,14 +27,14 @@ export const parseData = (data: JSONData) => {
     };
   }, {});
 
-  const numberOfPrograms = getNumberOfPrograms(filterGroups, items);
   return {
     type: DATA,
     payload: {
       filterState,
       filterGroups,
       items,
-      numberOfPrograms,
+      filteredItems: { ...items },
+      numberOfPrograms: getNumberOfPrograms(filterGroups, items),
     },
   };
 };
