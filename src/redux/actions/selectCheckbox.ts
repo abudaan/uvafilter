@@ -1,5 +1,5 @@
 import { SELECT_CHECKBOX } from "../../constants";
-import { RootState } from "../../types";
+import { RootState, TypeItem, TypeNumberOfPrograms } from "../../types";
 import { store } from "../store";
 import { getNumberOfPrograms } from "./getNumberOfPrograms";
 
@@ -9,28 +9,67 @@ export const selectCheckbox = ({ facetProperty, id, selected }) => {
   const filterState = { ...oldFilterState };
   filterState[facetProperty][id] = selected;
 
-  const filteredItems = items.filter(item => {
-    const keys1 = Object.keys(filterState);
-    let pass = true;
-    for (let i = 0; i < keys1.length; i++) {
-      const key1 = keys1[i];
-      // console.log(key1);
+  const filterArray = Object.entries(filterState).reduce((acc, [k, v]) => {
+    const subFilters = Object.entries(filterState[k])
+      .filter(([k, v]) => v)
+      .map(([k, v]) => k);
+    subFilters.forEach(k2 => {
+      acc.push([k, k2]);
+    });
+    return acc;
+  }, []);
+
+  const filterItems = (items: TypeItem[], filter: string[]): TypeItem[] => {
+    const filteredItems = [];
+    const [key1, key2] = filter;
+    items.forEach(item => {
       if (item[key1]) {
-        const keys2 = Object.keys(filterState[key1]).filter(k2 => filterState[key1][k2]);
-        // console.log(val.title, keys2);
-        for (let j = 0; j < keys2.length; j++) {
-          const key2 = keys2[j];
-          // console.log(key1, key2);
-          const hasKey = item[key1].indexOf(key2) !== -1;
-          return hasKey;
+        const hasKey = item[key1].indexOf(key2) !== -1;
+        if (hasKey) {
+          filteredItems.push(item);
         }
       }
-    }
-    // console.log(pass);
-    return pass;
+    });
+    return filteredItems;
+  };
+
+  const getNumPrograms = (
+    numberOfPrograms: TypeNumberOfPrograms,
+    items: TypeItem[],
+    checkKeys: string[],
+    filter: string[]
+  ): TypeNumberOfPrograms => {
+    const res = { ...numberOfPrograms };
+    const [f1, f2] = filter;
+
+    items.forEach(item => {
+      if (item[f1] && item[f1].indexOf(f2) === -1) {
+        checkKeys.forEach(key1 => {
+          if (item[key1]) {
+            const keys2 = Object.keys(res[key1]);
+            keys2.forEach(key2 => {
+              if (item[key1].indexOf(key2) !== -1) {
+                res[key1][key2] = res[key1][key2] - 1;
+              }
+            });
+          }
+        });
+      }
+    });
+    return res;
+  };
+
+  let filteredItems = [...items];
+  filterArray.forEach(f => {
+    filteredItems = filterItems(filteredItems, f);
   });
 
-  const numberOfPrograms = getNumberOfPrograms(filterGroups, filteredItems);
+  let numberOfPrograms = getNumberOfPrograms(filterGroups, items);
+  filterArray.forEach(f => {
+    const [key1] = f;
+    const checkKeys = filterGroups.map(f => f.facetProperty).filter(v => v !== key1);
+    numberOfPrograms = getNumPrograms(numberOfPrograms, items, checkKeys, f);
+  });
 
   return {
     type: SELECT_CHECKBOX,

@@ -14,7 +14,7 @@ render(
   </Provider>,
   document.getElementById("app"),
   () => {
-    fetch("https://klikmodel.lefthandmedia.com/assets/JSON/test.json")
+    fetch("./data.json")
       .then(response => response.json())
       .then(data => {
         store.dispatch(parseData(data as JSONData));

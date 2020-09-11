@@ -33,7 +33,7 @@ export const parseData = (data: JSONData) => {
       filterState,
       filterGroups,
       items,
-      filteredItems: { ...items },
+      filteredItems: [...items],
       numberOfPrograms: getNumberOfPrograms(filterGroups, items),
     },
   };

@@ -14,6 +14,9 @@ export function Value({ data, facetProperty }: Props) {
     ) {
       return "";
     }
+    if (state.numberOfPrograms[facetProperty][data.id] === 0) {
+      return "";
+    }
     return `(${state.numberOfPrograms[facetProperty][data.id]})`;
   });
   return <span>{amount}</span>;
