@@ -7,12 +7,12 @@ import { RootState } from "../types";
 const initialState: RootState = {
   width: 0,
   height: 0,
-  items: [],
   filterState: null,
   filterGroups: null,
   numberOfPrograms: null,
   filteredItems: null,
-  itemsPerFilter: null,
+  items: [],
+  // itemsPerFilter: null,
 };
 
 // const store: Store<any, AnyAction> = createStore(

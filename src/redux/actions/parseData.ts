@@ -32,7 +32,6 @@ export const parseData = (data: JSONData) => {
 
   const [filteredItems, numberOfPrograms] = runFilters({
     items,
-    itemsPerFilter,
     filterState,
   });
 

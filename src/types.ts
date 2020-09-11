@@ -66,5 +66,5 @@ export type RootState = {
   items: TypeItem[];
   numberOfPrograms: TypeNumberOfPrograms;
   filteredItems: TypeItem[];
-  itemsPerFilter: TypeItemsPerFilter;
+  // itemsPerFilter: TypeItemsPerFilter;
 };

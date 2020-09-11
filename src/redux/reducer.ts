@@ -13,22 +13,23 @@ export const rootReducer = (
       height,
     };
   } else if (action.type === DATA) {
+    // console.log(DATA);
     const {
       items,
+      // itemsPerFilter,
       filteredItems,
       filterState,
       filterGroups,
       numberOfPrograms,
-      itemsPerFilter,
     } = action.payload;
     return {
       ...state,
       items,
+      // itemsPerFilter,
       filteredItems,
       filterState,
       filterGroups,
       numberOfPrograms,
-      itemsPerFilter,
     };
   } else if (action.type === SELECT_CHECKBOX) {
     const { filterState, numberOfPrograms, filteredItems } = action.payload;
