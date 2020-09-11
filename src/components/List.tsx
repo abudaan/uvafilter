@@ -6,5 +6,5 @@ import { FilterGroup } from "./FilterGroup";
 
 export function List() {
   const items = useSelector((state: RootState) => state.filteredItems);
-  return <></>;
+  return <h3>{items && `num programs: ${items.length}`}</h3>;
 }
