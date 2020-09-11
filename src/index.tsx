@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import { Provider } from "react-redux";
 import "./styles/index.scss";
 import { store } from "./redux/store";
-import { RESIZE, DATA } from "./constants";
+import { RESIZE } from "./constants";
 import { JSONData } from "./types";
 import { parseData } from "./redux/actions/parseData";
 import { App } from "./components/App";
