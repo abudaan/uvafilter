@@ -9,6 +9,7 @@ type Args = {
 export const runFilters = ({ items, filterState }: Args): [TypeItem[], TypeNumberOfPrograms] => {
   const itemsPerFilter = getItemsPerFilter(filterState, items);
 
+  // ['studievorm', ['voltijds', 'deeltijd']]
   const filterArray = Object.entries(filterState).reduce((acc, [k, v]) => {
     const subFilters = Object.entries(filterState[k])
       .filter(([k, v]) => v)
